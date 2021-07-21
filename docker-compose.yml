@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  web:
+    image: nginx:1.17
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/var/www/myapp
+      - ./docker/site.conf:/etc/nginx/conf.d/site.conf
+    depends_on:
+      - php
+  php:
+    image: php:8-fpm
+    volumes:
+      - ./src:/var/www/myapp
+#      - ./docker/php.ini:/usr/local/etc/php/php.ini
